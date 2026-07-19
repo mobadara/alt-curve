@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-yale-blue: #0f4d92;
+  --color-yale-dark: #222222;
+  --color-yale-light: #f9f9f9;
+  --color-yale-accent: #c95b12;
+  
+  --font-serif: 'EB Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-yale-light);
+    color: var(--color-yale-dark);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--color-yale-blue);
+  }
+}
