@@ -1,10 +1,25 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUser, FaEnvelope, FaLock, FaArrowRight, FaChild } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaLock, FaArrowRight, FaUserTag } from 'react-icons/fa';
 import SmartBackButton from '../components/SmartBackButton';
+
+const TITLE_OPTIONS = [
+  '',
+  'Mr.',
+  'Mrs.',
+  'Ms.',
+  'Miss',
+  'Dr.',
+  'Prof.',
+  'Engr.',
+  'Chief',
+  'Rev.',
+  'Pastor',
+];
 
 function ApplyPage() {
   const [formData, setFormData] = useState({
+    title: 'Mr.',
     fullName: '',
     email: '',
     password: '',
@@ -15,8 +30,14 @@ function ApplyPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
+
+    // Sanitize payload: strip title if signing up as a student
+    const submissionPayload = {
+      ...formData,
+      title: formData.role === 'parent' ? formData.title : '',
+    };
     
-    console.log('Registering user payload:', formData);
+    console.log('Registering user payload:', submissionPayload);
     // Wire up to backend API authentication pipeline here
   };
 
@@ -104,22 +125,61 @@ function ApplyPage() {
                 </div>
               </div>
 
-              {/* Full Name Input */}
-              <div>
-                <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Full Name</label>
-                <div className="relative flex items-center border border-slate-300 rounded-sm bg-white focus-within:border-yale-blue transition-colors">
-                  <span className="pl-4 text-slate-400 text-sm"><FaUser /></span>
-                  <input
-                    id="fullName"
-                    type="text"
-                    required
-                    placeholder="e.g., Muyiwa Obadara"
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full px-3 py-2.5 text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none text-sm"
-                  />
+              {/* Conditional Title Selection & Full Name Block */}
+              {formData.role === 'parent' ? (
+                <div>
+                  <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
+                    Title & Full Name
+                  </label>
+                  <div className="flex gap-2">
+                    {/* Title Dropdown */}
+                    <div className="relative min-w-[110px] flex items-center border border-slate-300 rounded-sm bg-white focus-within:border-yale-blue transition-colors">
+                      <span className="pl-3 text-slate-400 text-sm"><FaUserTag /></span>
+                      <select
+                        id="title"
+                        value={formData.title}
+                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        className="w-full pl-2 pr-4 py-2.5 text-slate-800 bg-transparent focus:outline-none text-sm font-medium cursor-pointer"
+                      >
+                        {TITLE_OPTIONS.map((t) => (
+                          <option key={t} value={t}>{t}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Full Name Input */}
+                    <div className="relative flex-1 flex items-center border border-slate-300 rounded-sm bg-white focus-within:border-yale-blue transition-colors">
+                      <span className="pl-3 text-slate-400 text-sm"><FaUser /></span>
+                      <input
+                        id="fullName"
+                        type="text"
+                        required
+                        placeholder="Full Name"
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        className="w-full px-3 py-2.5 text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none text-sm"
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                /* Standalone Full Name Input for Teen Registrations */
+                <div>
+                  <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Full Name</label>
+                  <div className="relative flex items-center border border-slate-300 rounded-sm bg-white focus-within:border-yale-blue transition-colors">
+                    <span className="pl-4 text-slate-400 text-sm"><FaUser /></span>
+                    <input
+                      id="fullName"
+                      type="text"
+                      required
+                      placeholder="e.g., Alex Johnson"
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                      className="w-full px-3 py-2.5 text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none text-sm"
+                    />
+                  </div>
+                </div>
+              )}
 
               {/* Email Address Input */}
               <div>
@@ -130,7 +190,7 @@ function ApplyPage() {
                     id="email"
                     type="email"
                     required
-                    placeholder="hello@altcurve.academy"
+                    placeholder="someone@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-3 py-2.5 text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none text-sm"
