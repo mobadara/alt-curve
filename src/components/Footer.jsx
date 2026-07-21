@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+  import { Link } from 'react-router-dom';
 import { FaGraduationCap, FaEnvelope, FaPhoneAlt, FaGlobe, FaArrowRight } from 'react-icons/fa';
 import { footerLinks, socialLinks } from '../data/academyData';
 

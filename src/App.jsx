@@ -18,6 +18,10 @@ import SoftwareArchitecturePage from './pages/SoftwareArchitecturePage';
 import HealthTechPage from './pages/HealthTechPage';
 import CareersPage from './pages/CareersPage';
 import EducatorProfileDetailPage from './pages/EducatorProfileDetailPage';
+import ScholarshipsPage from './pages/ScholarshipsPage';
+import TestimonialsPage from './pages/TestimonialsPage';
+import TuitionFaqPage from './pages/TuitionFaqPage';
+import ContactPage from './pages/ContactPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -98,6 +102,10 @@ function App() {
           <Route path="/programs/:slug" element={<ProgramsPage />} />
           <Route path="/educators" element={<EducatorsPage />} />
           <Route path="/educators/:slug" element={<EducatorProfileDetailPage />} />
+          <Route path="/scholarships" element={<ScholarshipsPage />} />
+          <Route path="/testimonials" element={<TestimonialsPage />} />
+          <Route path="/tuition-faqs" element={<TuitionFaqPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/apply" element={<ApplyPage />} />
           <Route path="/newsletter" element={<NewsletterPage />} />
           <Route path="/login" element={<LoginPage />} />

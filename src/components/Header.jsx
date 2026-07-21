@@ -11,6 +11,8 @@ function Header({ hidden }) {
   const [isMobileCareerOpen, setIsMobileCareerOpen] = useState(false);
   const location = useLocation();
   const mobileMenuRef = useRef(null);
+  const [isResourcesMenuOpen, setIsResourcesMenuOpen] = useState(false);
+  const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
 
   useEffect(() => {
     closeMobileMenu();
@@ -124,7 +126,31 @@ function Header({ hidden }) {
           <Link to="/educators" className={`${navItemClass} transition-colors self-center`}>
             Our Educators
           </Link>
-
+          {/* Resources Dropdown */}
+          <div
+            className="group relative self-center"
+            onMouseEnter={() => setIsResourcesMenuOpen(true)}
+            onMouseLeave={() => setIsResourcesMenuOpen(false)}
+          >
+            <button className={`flex items-baseline gap-1.5 transition-colors ${navItemClass} focus:outline-none cursor-pointer`}>
+              <span>Resources</span>
+              <FaChevronDown className="text-[10px] transform translate-y-[1px]" />
+            </button>
+            <div className={`absolute left-0 top-full mt-[1px] flex min-w-56 flex-col border border-slate-200 bg-white p-1 shadow-xl transition-all duration-200 ${isResourcesMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+              <Link to="/scholarships" className="px-4 py-3 text-left text-sm transition-colors hover:bg-slate-50 hover:text-orange-500">
+                Scholarships & Vouchers
+              </Link>
+              <Link to="/testimonials" className="px-4 py-3 text-left text-sm transition-colors hover:bg-slate-50 hover:text-orange-500">
+                Testimonials
+              </Link>
+              <Link to="/tuition-faqs" className="px-4 py-3 text-left text-sm transition-colors hover:bg-slate-50 hover:text-orange-500">
+                Tuition & FAQs
+              </Link>
+              <Link to="/contact" className="px-4 py-3 text-left text-sm transition-colors hover:bg-slate-50 hover:text-orange-500">
+                Contact Us
+              </Link>
+            </div>
+          </div>
           <Link to="/login" className={`${navItemClass} transition-colors self-center`}>
             Login
           </Link>
@@ -226,7 +252,31 @@ function Header({ hidden }) {
           <Link to="/careers" onClick={closeMobileMenu} className="px-4 py-3.5 rounded-xl font-medium text-slate-100 hover:bg-white/5 transition-colors">
             Careers
           </Link>
-
+          {/* Mobile Resources Menu Section */}
+          <button
+            onClick={() => setIsMobileResourcesOpen((prev) => !prev)}
+            className={`flex w-full items-center justify-between px-4 py-3.5 rounded-xl font-medium transition-colors text-slate-100 ${isMobileResourcesOpen ? 'bg-white/5 text-orange-400' : 'hover:bg-white/5'}`}
+          >
+            <span>Resources</span>
+            {isMobileResourcesOpen ? <FaChevronDown className="text-xs" /> : <FaChevronRight className="text-xs" />}
+          </button>
+                  
+          {isMobileResourcesOpen && (
+            <div className="flex flex-col bg-slate-900/40 rounded-xl mt-1 mx-1 overflow-hidden">
+              <Link to="/scholarships" onClick={closeMobileMenu} className="px-8 py-3 text-sm text-slate-300 hover:text-white border-b border-white/5 transition-colors">
+                Scholarships & Vouchers
+              </Link>
+              <Link to="/testimonials" onClick={closeMobileMenu} className="px-8 py-3 text-sm text-slate-300 hover:text-white border-b border-white/5 transition-colors">
+                Testimonials
+              </Link>
+              <Link to="/tuition-faqs" onClick={closeMobileMenu} className="px-8 py-3 text-sm text-slate-300 hover:text-white border-b border-white/5 transition-colors">
+                Tuition & FAQs
+              </Link>
+              <Link to="/contact" onClick={closeMobileMenu} className="px-8 py-3 text-sm text-slate-300 hover:text-white transition-colors">
+                Contact Us
+              </Link>
+            </div>
+          )}
           <Link to="/login" onClick={closeMobileMenu} className="px-4 py-3.5 rounded-xl font-medium text-slate-100 hover:bg-white/5 transition-colors">
             Login
           </Link>
