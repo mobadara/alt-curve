@@ -274,3 +274,65 @@ export const footerLinks = [
   { label: 'HealthTech Pre-Med', to: '/programs/healthtech' },
   { label: 'Our educators', to: '/staff-directory' }
 ];
+
+
+export const scholarshipCategories = [
+  {
+    id: 'inaugural-launch',
+    sponsorName: 'AltCurve Founding Fund',
+    sponsorLogo: 'https://images.unsplash.com/photo-1542744094-3a31727223ec?auto=format&fit=crop&q=80&w=200',
+    title: 'Inaugural 90% Access Scholarship',
+    coveragePercentage: 90,
+    totalVouchers: 100,
+    vouchersRemaining: 42,
+    isOpen: true,
+    eligibility: 'Open to all incoming founding cohort applicants (Ages 6–18)',
+    eligibleTracks: ['Foundation Builders', 'Data & Intelligence', 'Systems & Hardware', 'Software Architecture', 'HealthTech Pre-Med'],
+    deadline: 'Rolling Admission',
+    description: 'Sponsored by the AltCurve Founding Academic Fund to subsidize tuition for our launch cohort.',
+  },
+  {
+    id: 'mastercard-stem',
+    sponsorName: 'MasterCard Foundation Partnership',
+    sponsorLogo: 'https://images.unsplash.com/photo-1556742049-0a67daf64f22?auto=format&fit=crop&q=80&w=200',
+    title: 'Young Innovators STEM Voucher',
+    coveragePercentage: 100,
+    totalVouchers: 50,
+    vouchersRemaining: 0,
+    isOpen: false,
+    eligibility: 'Promising young minds interested in Hardware & Systems Engineering',
+    eligibleTracks: ['Systems & Hardware', 'Software Architecture'],
+    deadline: 'July 15, 2026',
+    description: 'Fully funded tuition and hardware kit subsidies for young technical minds across emerging tech hubs.',
+  },
+];
+
+export const testimonialData = [
+  {
+    id: 'test-101',
+    authorType: 'parent', // 'parent' or 'student'
+    authorTitle: 'Dr.',
+    authorName: 'Adesina O.',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
+    memberSinceYear: 2025,
+    // Parents can have multiple enrolled tracks (across different children)
+    tracks: ['Foundation Builders', 'Systems & Hardware'],
+    quote: 'Managing two children on AltCurve has been seamless. My 8-year-old is mastering computational thinking while my 15-year-old is building microcontrollers.',
+    rating: 5,
+    sponsorTag: 'AltCurve Founding Parent',
+    approvedForPublishing: true,
+  },
+  {
+    id: 'test-102',
+    authorType: 'student',
+    authorTitle: '',
+    authorName: 'Tobi B.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
+    memberSinceYear: 2025,
+    tracks: ['Software Architecture'],
+    quote: 'The live interactive code reviews helped me construct real distributed applications with complete confidence before even entering university.',
+    rating: 5,
+    sponsorTag: 'MasterCard STEM Scholar',
+    approvedForPublishing: true,
+  },
+];
